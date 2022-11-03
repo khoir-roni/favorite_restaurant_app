@@ -1,9 +1,11 @@
+
 import 'dart:isolate';
 import 'dart:ui';
 
 import '../data/api/api_service.dart';
 import '../main.dart';
 import 'notification_helper.dart';
+import 'package:http/http.dart' show Client;
 
 final ReceivePort port = ReceivePort();
 
@@ -28,7 +30,7 @@ class BackgroundService {
   static Future<void> callback() async {
     print('Notification Triggered');
     final NotificationHelper notificationHelper = NotificationHelper();
-    var result = await ApiService().fetchList();
+    var result = await ApiService(Client()).fetchList();
     await notificationHelper.showNotification(
         flutterLocalNotificationsPlugin, result);
 

@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart' show Client;
+import 'package:http/http.dart' as http ;
 
 import '../models/restaurant_detail.dart';
 import '../models/restaurant_list.dart';
 import '../models/restaurant_search.dart';
 
 class ApiService {
+  final Client client;
+
+  ApiService(this.client);
   Future<RestaurantList> fetchList() async {
     const url = 'https://restaurant-api.dicoding.dev/list';
 

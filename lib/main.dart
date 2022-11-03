@@ -1,3 +1,4 @@
+
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -20,6 +21,7 @@ import 'screens/setting_page.dart';
 import 'theme/theme.dart';
 import 'utils/background_service.dart';
 import 'utils/notification_helper.dart';
+import 'package:http/http.dart' show Client;
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<DatabaseProvider>(
             create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper())),
         ChangeNotifierProvider<RestaurantListProvider>(
-            create: (_) => RestaurantListProvider(apiService: ApiService())),
+            create: (_) => RestaurantListProvider(apiService: ApiService(Client()))),
         ChangeNotifierProvider<SchedulingProvider>(
             create: (_) => SchedulingProvider()),
         ChangeNotifierProvider<PreferencesProvider>(

@@ -9,6 +9,7 @@ import '../theme/theme.dart';
 import '../utils/result_state.dart';
 import '../widgets/menu_list.dart';
 import '../widgets/rating_star.dart';
+import 'package:http/http.dart' show Client;
 
 class DetailScreen extends StatelessWidget {
   static const routeName = '/detail_page';
@@ -21,7 +22,7 @@ class DetailScreen extends StatelessWidget {
     return Scaffold(
       body: ChangeNotifierProvider<RestaurantDetailProvider>(
         create: (_) => RestaurantDetailProvider(
-            apiService: ApiService(), id: restaurant.id),
+            apiService: ApiService(Client()), id: restaurant.id),
         child: Consumer<RestaurantDetailProvider>(
           builder: (context, state, _) {
             if (state.state == ResultState.loading) {

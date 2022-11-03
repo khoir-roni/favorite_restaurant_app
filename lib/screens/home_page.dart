@@ -1,3 +1,4 @@
+import 'package:http/http.dart' show Client;
 import 'setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _listWidget = [
     ChangeNotifierProvider<RestaurantListProvider>(
-      create: (_) => RestaurantListProvider(apiService: ApiService()),
+      create: (_) => RestaurantListProvider(apiService: ApiService(Client())),
       child: const RestaurantListScreen(),
     ),
      const SearchScreen(),

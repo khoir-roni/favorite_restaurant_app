@@ -6,6 +6,7 @@ import '../data/api/api_service.dart';
 import '../provider/restaurant_search_provider.dart';
 import '../theme/theme.dart';
 import '../utils/result_state.dart';
+import 'package:http/http.dart' show Client;
 
 class SearchResultScreen extends StatelessWidget {
   static const routeName = '/search_result_screen';
@@ -30,7 +31,7 @@ class SearchResultScreen extends StatelessWidget {
       ),
       body: ChangeNotifierProvider<RestaurantSearchProvider>(
         create: (_) =>
-            RestaurantSearchProvider(apiService: ApiService(), query: query),
+            RestaurantSearchProvider(apiService: ApiService(Client()), query: query),
         child: Consumer<RestaurantSearchProvider>(
           builder: (context, state, _) {
             if (state.state == ResultState.loading) {
