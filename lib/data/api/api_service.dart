@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' show Client;
-import 'package:http/http.dart' as http ;
+import 'package:http/http.dart' as http;
 
 import '../models/restaurant_detail.dart';
 import '../models/restaurant_list.dart';
@@ -15,7 +15,7 @@ class ApiService {
     const url = 'https://restaurant-api.dicoding.dev/list';
 
     try {
-      final response = await http.get(Uri.parse(url));
+      final response = await client.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         return RestaurantList.fromJson(json.decode(response.body));
@@ -33,7 +33,7 @@ class ApiService {
   Future<RestaurantDetail> fetchDetail(String id) async {
     try {
       final url = 'https://restaurant-api.dicoding.dev/detail/$id';
-      final response = await http.get(Uri.parse(url));
+      final response = await client.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         return RestaurantDetail.fromJson(json.decode(response.body));
@@ -51,7 +51,7 @@ class ApiService {
     try {
       // print("searchRestaurant(String $query)");
       final url = 'https://restaurant-api.dicoding.dev/search?q=$query';
-      final response = await http.get(Uri.parse(url));
+      final response = await client.get(Uri.parse(url));
       // print(response.statusCode);
       if (response.statusCode == 200) {
         // print(response.body);
